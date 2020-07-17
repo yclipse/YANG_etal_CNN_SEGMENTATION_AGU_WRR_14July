@@ -1,0 +1,687 @@
+%% March 2018
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% AGUJournalTemplate.tex: this template file is for articles formatted with LaTeX
+%
+% This file includes commands and instructions
+% given in the order necessary to produce a final output that will
+% satisfy AGU requirements, including customized APA reference formatting.
+%
+% You may copy this file and give it your
+% article name, and enter your text.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% PLEASE DO NOT USE YOUR OWN MACROS
+% DO NOT USE \newcommand, \renewcommand, or \def, etc.
+%
+% FOR FIGURES, DO NOT USE \psfrag or \subfigure.
+% DO NOT USE \psfrag or \subfigure commands.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Step 1: Set the \documentclass
+%
+% There are two options for article format:
+%
+% PLEASE USE THE DRAFT OPTION TO SUBMIT YOUR PAPERS.
+% The draft option produces double spaced output.
+%
+
+%% To submit your paper:
+\documentclass[draft,linenumbers]{agujournal2018}
+\usepackage{apacite}
+\usepackage{url} %this package should fix any errors with URLs in refs.
+
+%%%%%%%
+% \usepackage{trackchanges}
+% uncomment the line above to use the TrackChanges package to mark revisions if needed.
+% The trackchanges package adds five new LaTeX commands:
+%
+%  \note[editor]{The note}
+%  \annote[editor]{Text to annotate}{The note}
+%  \add[editor]{Text to add}
+%  \remove[editor]{Text to remove}
+%  \change[editor]{Text to remove}{Text to add}
+%
+% complete documentation is here: http://trackchanges.sourceforge.net/
+%%%%%%%
+
+\draftfalse
+
+% Now, type in the journal name: \journalname{<Journal Name>}
+
+% ie, \journalname{Journal of Geophysical Research}
+%% Choose from this list of Journals:
+%
+% JGR-Atmospheres
+% JGR-Biogeosciences
+% JGR-Earth Surface
+% JGR-Oceans
+% JGR-Planets
+% JGR-Solid Earth
+% JGR-Space Physics
+% Global Biochemical Cycles
+% Geophysical Research Letters
+% Paleoceanography
+% Radio Science
+% Reviews of Geophysics
+% Tectonics
+% Space Weather
+% Water Resource Research
+% Geochemistry, Geophysics, Geosystems
+% Journal of Advances in Modeling Earth Systems (JAMES)
+% Earth's Future
+% Earth and Space Science
+% Geohealth
+%
+
+\journalname{Water Resource Research}
+
+\usepackage{textgreek}
+
+\begin{document}
+
+%% ------------------------------------------------------------------------ %%
+%  Title
+%
+% (A title should be specific, informative, and brief. Use
+% abbreviations only if they are defined in the abstract. Titles that
+% start with general keywords then specific terms are optimized in
+% searches)
+%
+%% ------------------------------------------------------------------------ %%
+
+% Example: \title{This is a test title}
+
+\title{An Implementation of a Convolutional Neural Network for fast segmentation of 4D microtomography volumes from fluid flow experiments in porous media.}
+
+%% ------------------------------------------------------------------------ %%
+%
+%  AUTHORS AND AFFILIATIONS
+%
+%% ------------------------------------------------------------------------ %%
+
+% Authors are individuals who have significantly contributed to the
+% research and preparation of the article. Group authors are allowed, if
+% each author in the group is separately identified in an appendix.)
+
+% List authors by first name or initial followed by last name and
+% separated by commas. Use \affil{} to number affiliations, and
+% \thanks{} for author notes.
+% Additional author notes should be indicated with \thanks{} (for
+% example, for current addresses).
+
+% Example: \authors{A. B. Author\affil{1}\thanks{Current address, Antartica}, B. C. Author\affil{2,3}, and D. E.
+% Author\affil{3,4}\thanks{Also funded by Monsanto.}}
+
+\authors{Y.Yang, I.B.Butler,F.Fusseis....}
+
+
+% \affiliation{1}{First Affiliation}
+% \affiliation{2}{Second Affiliation}
+% \affiliation{3}{Third Affiliation}
+% \affiliation{4}{Fourth Affiliation}
+
+\affiliation{1}{University of Edinburgh}
+%(repeat as many times as is necessary)
+
+%% Corresponding Author:
+% Corresponding author mailing address and e-mail address:
+
+% (include name and email addresses of the corresponding author.  More
+% than one corresponding author is allowed in this LaTeX file and for
+% publication; but only one corresponding author is allowed in our
+% editorial system.)
+
+% Example: \correspondingauthor{First and Last Name}{email@address.edu}
+
+\correspondingauthor{Yili YANG}{yili.yang@ed.ac.uk}
+
+%% Keypoints, final entry on title page.
+
+% Example:
+% \begin{keypoints}
+% \item	List up to three key points (at least one is required)
+% \item	Key Points summarize the main points and conclusions of the article
+% \item	Each must be 100 characters or less with no special characters or punctuation
+% \end{keypoints}
+
+%  List up to three key points (at least one is required)
+%  Key Points summarize the main points and conclusions of the article
+%  Each must be 100 characters or less with no special characters or punctuation
+
+\begin{keypoints}
+\item An effective solution to the segmentation of extremely large and compromised quality synchrotron CT data set using convolutional neuron network.
+
+\end{keypoints}
+
+%% ------------------------------------------------------------------------ %%
+%
+%  ABSTRACT
+%
+% A good abstract will begin with a short description of the problem
+% being addressed, briefly describe the new data or analyses, then
+% briefly states the main conclusion(s) and how they are supported and
+% uncertainties.
+%% ------------------------------------------------------------------------ %%
+
+%% \begin{abstract} starts the second page
+
+\begin{abstract}
+multiphase fluid flow in porous media is extensively studied for its application in enhanced
+oil recovery and agriculture etc. We conducted two-phase flow experiments in carbonate rocks and
+imaged real-time fluid displacement using high temporal-spatial resolution synchrotron micro-tomography. One side-effect of fast synchrotron CT imaging is compromised image quality,
+such as more artifacts and poorer contrast, which make the images hard to be segmented. We implemented a convolutional neuron network and trained it with 14k+ images from multiphase flow experiments generated by synchrotron CT. The trained neuron network can segment highly noised synchrotron CT images of core-flooding experiments fast and accurately without any pre-processing of the raw image. Segmenting one CT volume of size 1003x496x496 takes about 10 minutes on a Nvidia Quadro K5200 GPU. On the test dataset, the interception over union reached 0.985 and mean accuracy of the three segmentation class reached 0.990.
+\end{abstract}
+
+
+%% ------------------------------------------------------------------------ %%
+%
+%  TEXT
+%
+%% ------------------------------------------------------------------------ %%
+
+%%% Suggested section heads:
+% \section{Introduction}
+%
+% The main text should start with an introduction. Except for short
+% manuscripts (such as comments and replies), the text should be divided
+% into sections, each with its own heading.
+
+% Headings should be sentence fragments and do not begin with a
+% lowercase letter or number. Examples of good headings are:
+
+% \section{Materials and Methods}
+% Here is text on Materials and Methods.
+%
+% \subsection{A descriptive heading about methods}
+% More about Methods.
+%
+% \section{Data} (Or section title might be a descriptive heading about data)
+%
+% \section{Results} (Or section title might be a descriptive heading about the
+% results)
+%
+% \section{Conclusions}
+\section{Introduction}
+Experimental studies of fluid flow related processes in porous media, including multiphase flow and reactive flow, have increasingly made use of x-ray microtomography (\textmu CT) techniques to image fluid distributions and changes in porous media in-situ. These studies range from those which employ laboratory µCT instruments (e.g.\citet{pak2015droplet}, \citet{alratrout2018wettability}) to those which employ synchrotron µCT to generate 4D time resolved data which reveal processes in action (e.g. \citet{berg2014multiphase}, \citet{reynolds2017dynamic}, \citet{berg2013real}). The high photon flux at synchrotron x-ray sources enables experimenters to acquire multiple µCT volumes, each scan lasting few seconds or less, over minutes to hours of experimentation. With 4D data sets often approaching a few terabytes, the efficiency of image processing can present a bottleneck to downstream data analysis. Furthermore, fast scans with brief exposure times and few projections, combined with progressive damage to scintillators resulting from high X-ray fluxes may lead to increased noise, image artifacts and low contrast, making image classification and segmentation difficult and time consuming.
+
+In this contribution we trained a convolutional neuron network (CNN) to efficiently segment synchrotron µCT images obtained during core-flooding experiments. The volumes comprise of three phases: solid, oil and water. The trained CNN network is able to segment the three phases directly from reconstructed images accurately and rapidly, with no pre-processing beforehand. The technique and approach used herein is targeted specifically at µCT data of this type, rather than being a generally applicable segmentation technique.
+
+\subsection{Segmentation using convolutional neuron network}
+Unlike conventional segmentation methods that only take single feature into account, deep learning allows models to abstract multiple levels of features to represent data. Convolutional neuron networks (CNNs, \citet{lecun2015deep}) are a class of deep neuron network that have been proved effective in visual recognition tasks (e.g. \citet{krizhevsky2012imagenet}; \citet{long2015fully};\citet{girshick2014rich}). \citet{ronneberger2015u} also proved the reliability of CNN in segmenting low-contrast gray scale biomedical images, which are similar to experimental multiphase flow data generated by microtomography. For this reason, we have chosen to use the CNN architecture 'U-Net' introduced by \citet{ronneberger2015u}, to train our data set and yield precise segmentation.
+
+The training of a CNN model is a form of supervised learning. The purpose of training is to use limited data to train a generalized model to classify all data of this type. During training, the model is trying to learn the knowledge of 'how to catagorize pixels into oil, water, and solid', input training data is the 'exersice', prediction is the model's 'answer', and labelled training data is the 'ground truth', loss function is the scoring criteria and loss value is the score of the 'exercise'. By iteratively doing the 'exercise', the model prediction is gradually approaching the ground truth.
+
+However, when the training data set is excessively iterated, the model becomes too specific to the training data set and unable to make generalized prediction to data beyond the training set, this problem is called over-fit. For this reason, an independent validation data set is separated for cross-validation to prevent over-fit.
+
+Validation is a syn-training process similar with training. The difference is that the update of the model is prevented, therefore the model does not learn from the validation set thus stays unchanged. Validation can be used to check over-fit and tune hyper-parameters that control model's learning behaviour. 
+
+When training is completed, a held-out test set is revealed to the CNN model to test its performance on entirely unfamiliar data. This set is absolutely 'unseen' by the CNN model so the test score can provide an unbiased evaluation of the reliability of the model prediction on real-world data. Evaluation criteria of image segmentation often include intersection over union (IoU), accuracy, precision, recall and F1 score etc. The evaluation scores represent the reliability of segmentation produced by the trained CNN model.
+\section{Materials and methods}
+\subsection{multiphase fluid flow experiments}
+A benchmark carbonate rock, Indiana limestone, was used as porous medium in the experiments.The rock was cored and installed in an X-ray transparent cell designed by \citet{fusseis2014low}. For fluid injection we used mineral oil and Potassium Iodine solution as oil and aqueous phase respectively. Synchrotron X-ray Images were acquired using pink beam by one second acquisition time in every 20 seconds during fluid injections. We used the beam line 2-BM at the Advanced Photon Source in Argonne National Laboratory in Chicago, U.S.
+
+\subsection{Convolutional neuron network segmentation}
+\subsubsection{Data preparation}
+The raw CT projections were reconstructed using filtered back projection method. We segmented all the reconstructed images for ground-truthing (Fig.1). The original reconstructed images are hard to be segmented due to noises, artifacts and low contrast between solid and brine. With a high-resolution reference dry scan (before fluid injection) available, we segmented the solid phase and use it as mask in wet scans to further separate the three phases. We used Non-local Means (implemented in Fiji-ImageJ) filter to denoise the reconstructed images, registered and applied the mask using Avizo9\texttrademark, and implemented the seeded random-walker (Scikit-image) algorithm to finalize the segmentation. The whole segmentation work flow is very time-consuming and uses different software thus difficult to automate.
+
+Every original reconstruction image was paired with the corresponding segmented image to make a pair of input-target image set for the network training. A total of 18 CT volumes were divided into 14 training sets, 2 test sets and 2 validation set. Each CT volume had 1003 reconstruction images of size 496x496.  
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=33pc]{prep.png}
+\caption{The image segmentation work flow for ground-truthing. From left to right: Raw image reconstructed by filtered back projection method, mask of solid phase applied, image filtered by Non-local-means algorithm, final segmentation produced by seeded random-walker algorithm.}
+\label{fig1}
+\end{figure}
+
+\subsubsection{Network training}
+We used the CNN architecture U-net introduced by \citet{ronneberger2015u} and implemented by \citet{Jorispytorch} using the open-sourced deep learning platform Pytorch (\citet{paszke2017automatic}). We used a NVidia\texttrademark Quadro K5200 GPU (8GB) to train the network. 
+
+In training (Fig.2 Training), the model is inputted with a training image and output a prediction of probability that each pixel belongs to a category. Then the prediction is compared with the ground truth image, and yield a loss value (Training loss, Fig.2 Training) which describes the difference between prediction and ground truth. The comparison is calculated by a criterion called loss function. The model iteratively updates the internal adjustable parameters (i.e. neuron weights), as training proceeds, to minimize the loss therefore improve the prediction step-wisely. A training epoch is a full iteration of all training data, we trained the CNN model for 24 epochs.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=33pc]{workfl.pdf}
+\caption{CNN training, testing and application work flow. The training process uses training data set and validation data set to adjust the best fit of a CNN model that representing the relation of input raw images with segmented ground-truth images. The testing process validates the model with a held-out data set. The application process uses the trained CNN model to segment new data directly from raw.}
+\label{fig0}
+\end{figure}
+
+Pytorch built-in Cross Entropy Loss was used as the loss function during training. Cross entropy loss function calculates the distance between the two probability distributions - the output prediction and the corresponding ground-truth. The loss value was step-wisely reduced during training and finally converged at the end of training (Fig.3 Lower, train loss curve). 
+
+The sequence of the input data was shuffled at the start of each epoch so that the neuron weights updated in each iteration were different. The optimizer used was Pytorch built-in Adam algorithm (\citet{kingma2014adam}). L2 regularization was applied to alleviate over-fitting.
+
+\subsubsection{Validation}
+At the end of each training epoch, the validation data set was inputted into the CNN. Similarly, the CNN yielded a prediction and then a loss value (Validation loss, Fig 2. Training). The validation loss was not back propagated to the CNN model, so the CNN did not learn from the validation set, this is to keep the validation set independent and unbiased.
+
+The validation loss value is plotted throughout training and compared with the training loss value (Fig.3 lower). The model is best-trained at the 17th epoch where two curves crossed, after that, the model started over-fitting. This is because that the validation set is prevented to be learned by the CNN model, so it can represent the lowest loss possible without over-fitting.
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=33pc]{17_crossval.png}
+ \caption{Upper Image shows phase accuracy and IoU improvement during validation. Lower image shows training loss and validation loss comparison during training. This illustrates the training and validation process of a CNN model, when the validation accuracy stopped increasing, or the training loss intersects the validation loss, the model is best-fit with the data}
+ \label{fig2}
+ \end{figure}
+ 
+ We used intersection over union (IoU) and accuracy as the metric of segmentation accuracy. IoU is the ratio of intersection - the overlapping area between prediction and ground truth - and union - the area encompassed by both prediction and ground truth (eq.1). Accuracy is another evaluation metric of binary classification, it is the ratio of correctly classified pixels and total pixels. First we take probability above 95\% in prediction as true, then calculate the true positive (TP), false positive (FP), true negative (TN) and false negative (FN) w.r.t. the ground truth. The accuracy was calculated using eq.2:
+
+\begin{equation}
+    IoU=\frac{Area-of-Overlap}{Area-of-Union}
+\end{equation}
+\begin{equation}
+    accuracy=\frac{TP+TN}{TP+TN+FP+FN}
+\end{equation}
+
+IoU and individual phase accuracy were calculated as the measurements of model performance during validation. At the 17th epoch the individual phase accuracy and IoU stopped increasing also meaning that the best-fit has been achieved (Fig.3 Upper).
+
+\subsubsection{Testing}
+After training, it's necessary to test the performance of the CNN model on 'unseen' data to check its generalization and visually assess the segmentation quality on real-world data. The well-separated test data sets were first-time input into the trained neuron network model (Fig.2 Testing). 
+
+The evaluation criteria of IoU and individual phase accuracy were used to evaluate the reliability of the segmentation by the trained CNN model.
+
+\section{Results}
+\subsection{Testing Result of the trained network}
+
+The total training time was 148 hours, the complete training set was trained for 24 epochs and the best fit was identified at the 17th epoch (Fig.2). The testing took 10 minutes for the test data set sized 2006x496x496.
+
+The accuracy measured on the test set shows high accuracy and IoU of all catagories. The segmentation accuracy of background (solid) reached 98.51\%, oil phase accuracy reached 99.13\%, brine phase accuracy reached 99.37\% and on average 99.00\%.
+The average IoU of the test set measured is 98.51\%.
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=33pc]{17_test_probmap.png}
+ \caption{Probability distribution of phase segmentation. The coloured scale bar shows probability between 0-1, indicating the probability of a pixel that belongs to a specific segmentation category. This illustrates a determined segmentation with many certainties (probability close to 0 and 1) and very few uncertainties (probability around 0.5).}
+ \label{fig3}
+ \end{figure}
+ 
+The probability (Fig.3) distribution map is generated by the Pytorch built-in softmax function that transforms the model output to a probability distribution output into 0-1 distribution. It visualised the probability distribution of all three phases. The colour map indicates the likely-hood of a pixel belonging to one phase. The red end is extremely likely, the blue end is extremely unlikely, and white is ambiguous likely-hood. The three phases are easily determined because the ambiguous likely-hood pixels are of minor amounts. It also illustrates a very robust determination of the model in segmentation. 
+
+The CNN model is completely trained and evaluated for very high segmentation performance. This model can be used to generate segmentation for new multiphase flow experimental data rapidly and without any pre-processing (Fig.2. Application).
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=33pc]{17_test_result.png}
+ \caption{Comparison of input raw image, CNN segmentation result and ground truth. The raw image (left figure) is very noisy and can be segmented using a very complex and time-consuming work flow showing in Fig.1, to produce the ground truth image (right figure). The CNN model can segment the raw image directly into segmentation (middle figure) with significantly shorter time (few hours to few minutes).}
+ \label{fig4}
+ \end{figure}
+
+Taking probability above 94\% as foreground for each phase, the segmentation result is shown in Fig.4. The visualization (Fig.4) of CNN segmentation shows high similarity with ground truth. Minor differences are existed but hardly recognized visually. The result proves that the trained network is reliable in segmenting highly noised, low contrast CT reconstructed images.
+
+\section{Discussion}
+\subsection{Segmentation robustness test}
+To test the robustness of the trained CNN model, we added artificial Gaussian filter and Gaussian noise to the same input image (Fig.6) that is clean and visually separable. Gaussian filter convolves the image with a Gaussian function, it is a blurring or smoothing process. And Gaussian noise is artificial noise that having a probability distribution function of Gaussian distribution. We inputted these images to the trained CNN and calculated the pixel-wise individual phase accuracy from the output. The CNN method is compared with conventional segmentation algorithms, watershed \citet{neubert2014compact} and seeded random walker \citet{grady2006random} scikit-image implementation were tested with the same noisy and filtered images.
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=33pc]{noisetest.png}
+ \caption{Upper two rows: Gaussian filtered test image with increasing sigma; Lower two rows: Gaussian noised test image with increasing sigma. The altered images are used to test the robustness of the CNN model.}
+ \label{fig5}
+ \end{figure}
+ 
+The result (Fig.7) shows that for CNN method, as both the amount of filtering and noise increased, the pixel-wise accuracy and IoU slightly decreased and gradually levelled off. For both filtering and noised images, the brine phase was least affected because it has a distinct grey level and relatively smaller area. The accuracy and IoU started to decrease when the amount of filtering and noise is enough to obscure the most sensitive image details, and they went steady when the least sensitive details are completely affected by the filtering and noise.
+
+The overall effect of obscuring image quality is limited, the accuracy and IoU dropped less than 10\%. Meaning that the trained model is highly robust and can maintain excellent performance with a wide range of image quality.
+
+Random walker algorithm is slightly less accurate at low degree blurring or noising, but performs no worse than CNN at high degree worsening of image quality. The overall performance of random walker is stable, with some minor accuracy increase in filtered images. 
+
+Watershed algorithm can not segment three phase accurately regardless of degree of worsening.
+
+\begin{figure}[h]
+ \centering
+ \includegraphics[width=33pc]{17_noise_test.png}
+ \caption{Left: Accuracy and IoU of the CNN segmentation results for Gaussian filtered images; Right:  Accuracy and IoU of the CNN segmentation results for Gaussian noised images.  Watershed method has the lowest performance for both filtered and noised images. This shows that CNN method has the best performance with low degree of worsening, but maintain good performance with high degree of worsening and not less accurate than random walker segmentation. Watershed method is incapable of segmenting this image series regardless of worsening.}
+ \label{fig6}
+ \end{figure}
+
+\subsection{Future improvements}
+Comparison of different network architectures can be further tested. Apart from the U-net, there are other powerful CNN architectures such as ResNet (\citet{he2016deep}), GoogLeNet (\citet{szegedy2015going}), VGGNet (\citet{simonyan2014very}) etc. with different advantages and specialities. It still remains to be tested on which is the most suitable architecture for segmenting \textmu CT images from multiphase fluid flow experiments.
+
+Different hyper-parameters such as learning rate, batch size, normalisation index, network depth etc. can be further tested to find the optimal training efficiency and result.
+
+The current training data set can be augmented by noising, flipping, rotating, scaling, cropping or translating the original training images. Data augmentation allows amplification of the training data set based on currently existed data set and therefore further generalize the CNN model for more robust segmentation of different data sets.
+
+\subsection{Transfer learning}
+By using future data sets of similar context, this model can be further trained. The imaging condition and materials can be different due to different rock types and different fluids used. The model will be increasingly robust and generalized as more data sets are fed. So the future training needed to classify future data will be decreased and converged to a point where no more training is needed. That becomes the ultimate model that can segment multiphase fluid flow experiment data regardless of noise, rocktype, fluid type and beamline condition etc.
+
+\section{Conclusion}
+The CNN segmentation can significantly improve the segmentation workflow for multiphase flow \textmu CT images. The advantages are fivefold. Firstly once a network for segmenting multiphase flow images is trained, it can be applied to future data without re-train. Second, once a network is trained it can function without a high quality reference image at time zero, allowing segmentation of any data set that lacks such a reference. Thirdly the segmentation is the direct output from reconstruction image, and so the considerable time consumed by preprocessing (tuning of filtering, registration, masking etc.) is no longer required. This is significant because for fast synchrotron \textmu CT data set, the data processing time is considerably long compared with time used for interpretation.Fourthly, the algorithm is capable for highly noised images, which is extremely limiting for conventional processing paths. Finally, the performance of the CNN network improves as more data it has seen, it evolves itself when it is used. Overall the CNN segmentation is a powerful and efficient tool for \textmu CT image segmentation, especially for extra-large and noisy data set.
+
+%Text here ===>>>
+
+%%
+
+%  Numbered lines in equations:
+%  To add line numbers to lines in equations,
+%  \begin{linenomath*}
+%  \begin{equation}
+%  \end{equation}
+%  \end{linenomath*}
+
+
+
+%% Enter Figures and Tables near as possible to where they are first mentioned:
+%
+% DO NOT USE \psfrag or \subfigure commands.
+%
+% Figure captions go below the figure.
+% Table titles go above tables;  other caption information
+%  should be placed in last line of the table, using
+% \multicolumn2l{$^a$ This is a table note.}
+%
+%----------------
+% EXAMPLE FIGURE
+%
+% \begin{figure}[h]
+% \centering
+% when using pdflatex, use pdf file:
+% \includegraphics[width=20pc]{figsamp.pdf}
+%
+% when using dvips, use .eps file:
+% \includegraphics[width=20pc]{figsamp.eps}
+%
+% \caption{Short caption}
+% \label{figone}
+%  \end{figure}
+%
+% ---------------
+% EXAMPLE TABLE
+%
+% \begin{table}
+% \caption{Time of the Transition Between Phase 1 and Phase 2$^{a}$}
+% \centering
+% \begin{tabular}{l c}
+% \hline
+%  Run  & Time (min)  \\
+% \hline
+%   $l1$  & 260   \\
+%   $l2$  & 300   \\
+%   $l3$  & 340   \\
+%   $h1$  & 270   \\
+%   $h2$  & 250   \\
+%   $h3$  & 380   \\
+%   $r1$  & 370   \\
+%   $r2$  & 390   \\
+% \hline
+% \multicolumn{2}{l}{$^{a}$Footnote text here.}
+% \end{tabular}
+% \end{table}
+
+%% SIDEWAYS FIGURE and TABLE
+% AGU prefers the use of {sidewaystable} over {landscapetable} as it causes fewer problems.
+%
+% \begin{sidewaysfigure}
+% \includegraphics[width=20pc]{figsamp}
+% \caption{caption here}
+% \label{newfig}
+% \end{sidewaysfigure}
+%
+%  \begin{sidewaystable}
+%  \caption{Caption here}
+% \label{tab:signif_gap_clos}
+%  \begin{tabular}{ccc}
+% one&two&three\\
+% four&five&six
+%  \end{tabular}
+%  \end{sidewaystable}
+
+%% If using numbered lines, please surround equations with \begin{linenomath*}...\end{linenomath*}
+%\begin{linenomath*}
+%\begin{equation}
+%y|{f} \sim g(m, \sigma),
+%\end{equation}
+%\end{linenomath*}
+
+%%% End of body of article
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Optional Appendix goes here
+%
+% The \appendix command resets counters and redefines section heads
+%
+% After typing \appendix
+%
+%\section{Here Is Appendix Title}
+% will show
+% A: Here Is Appendix Title
+%
+%appendix
+%\section{Jupyter Notebook}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Optional Glossary, Notation or Acronym section goes here:
+%
+%%%%%%%%%%%%%%
+% Glossary is only allowed in Reviews of Geophysics
+%  \begin{glossary}
+%  \term{Term}
+%   Term Definition here
+%  \term{Term}
+%   Term Definition here
+%  \term{Term}
+%   Term Definition here
+%  \end{glossary}
+
+%
+%%%%%%%%%%%%%%
+% Acronyms
+%   \begin{acronyms}
+%   \acro{Acronym}
+%   Definition here
+%   \acro{EMOS}
+%   Ensemble model output statistics
+%   \acro{ECMWF}
+%   Centre for Medium-Range Weather Forecasts
+%   \end{acronyms}
+
+%
+%%%%%%%%%%%%%%
+% Notation
+%   \begin{notation}
+%   \notation{$a+b$} Notation Definition here
+%   \notation{$e=mc^2$}
+%   Equation in German-born physicist Albert Einstein's theory of special
+%  relativity that showed that the increased relativistic mass ($m$) of a
+%  body comes from the energy of motion of the body—that is, its kinetic
+%  energy ($E$)—divided by the speed of light squared ($c^2$).
+%   \end{notation}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%  ACKNOWLEDGMENTS
+%
+% The acknowledgments must list:
+%
+% >>>>	A statement that indicates to the reader where the data
+% 	supporting the conclusions can be obtained (for example, in the
+% 	references, tables, supporting information, and other databases).
+%
+% 	All funding sources related to this work from all authors
+%
+% 	Any real or perceived financial conflicts of interests for any
+%	author
+%
+% 	Other affiliations for any author that may be perceived as
+% 	having a conflict of interest with respect to the results of this
+% 	paper.
+%
+%
+% It is also the appropriate place to thank colleagues and other contributors.
+% AGU does not normally allow dedications.
+
+
+\acknowledgments
+ This study is funded by Petrobras and Royal Dutch Shell via International Centre for Carbonate Reservoirs. 
+
+
+%% ------------------------------------------------------------------------ %%
+%% References and Citations
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BibTeX is preferred:
+%
+\bibliography{aguref.bib}
+%
+% no need to specify bibliographystyle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Please use ONLY \citet and \citep for reference citations.
+% DO NOT use other cite commands (e.g., \cite, \citeyear, \nocite, \citealp, etc.).
+%% Example \citet and \citep:
+%  ...as shown by \citet{Boug10}, \citet{Buiz07}, \citet{Fra10},
+%  \citet{Ghel00}, and \citet{Leit74}.
+
+%  ...as shown by \citep{Boug10}, \citep{Buiz07}, \citep{Fra10},
+%  \citep{Ghel00, Leit74}.
+
+%  ...has been shown \citep [e.g.,][]{Boug10,Buiz07,Fra10}.
+
+
+\end{document}
+
+
+
+More Information and Advice:
+
+%% ------------------------------------------------------------------------ %%
+%
+%  SECTION HEADS
+%
+%% ------------------------------------------------------------------------ %%
+
+% Capitalize the first letter of each word (except for
+% prepositions, conjunctions, and articles that are
+% three or fewer letters).
+
+% AGU follows standard outline style; therefore, there cannot be a section 1 without
+% a section 2, or a section 2.3.1 without a section 2.3.2.
+% Please make sure your section numbers are balanced.
+% ---------------
+% Level 1 head
+%
+% Use the \section{} command to identify level 1 heads;
+% type the appropriate head wording between the curly
+% brackets, as shown below.
+%
+%An example:
+%\section{Level 1 Head: Introduction}
+%
+% ---------------
+% Level 2 head
+%
+% Use the \subsection{} command to identify level 2 heads.
+%An example:
+%\subsection{Level 2 Head}
+%
+% ---------------
+% Level 3 head
+%
+% Use the \subsubsection{} command to identify level 3 heads
+%An example:
+%\subsubsection{Level 3 Head}
+%
+%---------------
+% Level 4 head
+%
+% Use the \subsubsubsection{} command to identify level 3 heads
+% An example:
+%\subsubsubsection{Level 4 Head} An example.
+%
+%% ------------------------------------------------------------------------ %%
+%
+%  IN-TEXT LISTS
+%
+%% ------------------------------------------------------------------------ %%
+%
+% Do not use bulleted lists; enumerated lists are okay.
+% \begin{enumerate}
+% \item
+% \item
+% \item
+% \end{enumerate}
+%
+%% ------------------------------------------------------------------------ %%
+%
+%  EQUATIONS
+%
+%% ------------------------------------------------------------------------ %%
+
+% Single-line equations are centered.
+% Equation arrays will appear left-aligned.
+
+Math coded inside display math mode \[ ...\]
+ will not be numbered, e.g.,:
+ \[ x^2=y^2 + z^2\]
+
+ Math coded inside \begin{equation} and \end{equation} will
+ be automatically numbered, e.g.,:
+ \begin{equation}
+ x^2=y^2 + z^2
+ \end{equation}
+
+
+% To create multiline equations, use the
+% \begin{eqnarray} and \end{eqnarray} environment
+% as demonstrated below.
+\begin{eqnarray}
+  x_{1} & = & (x - x_{0}) \cos \Theta \nonumber \\
+        && + (y - y_{0}) \sin \Theta  \nonumber \\
+  y_{1} & = & -(x - x_{0}) \sin \Theta \nonumber \\
+        && + (y - y_{0}) \cos \Theta.
+\end{eqnarray}
+
+%If you don't want an equation number, use the star form:
+%\begin{eqnarray*}...\end{eqnarray*}
+
+% Break each line at a sign of operation
+% (+, -, etc.) if possible, with the sign of operation
+% on the new line.
+
+% Indent second and subsequent lines to align with
+% the first character following the equal sign on the
+% first line.
+
+% Use an \hspace{} command to insert horizontal space
+% into your equation if necessary. Place an appropriate
+% unit of measure between the curly braces, e.g.
+% \hspace{1in}; you may have to experiment to achieve
+% the correct amount of space.
+
+
+%% ------------------------------------------------------------------------ %%
+%
+%  EQUATION NUMBERING: COUNTER
+%
+%% ------------------------------------------------------------------------ %%
+
+% You may change equation numbering by resetting
+% the equation counter or by explicitly numbering
+% an equation.
+
+% To explicitly number an equation, type \eqnum{}
+% (with the desired number between the brackets)
+% after the \begin{equation} or \begin{eqnarray}
+% command.  The \eqnum{} command will affect only
+% the equation it appears with; LaTeX will number
+% any equations appearing later in the manuscript
+% according to the equation counter.
+%
+
+% If you have a multiline equation that needs only
+% one equation number, use a \nonumber command in
+% front of the double backslashes (\\) as shown in
+% the multiline equation above.
+
+% If you are using line numbers, remember to surround
+% equations with \begin{linenomath*}...\end{linenomath*}
+
+%  To add line numbers to lines in equations:
+%  \begin{linenomath*}
+%  \begin{equation}
+%  \end{equation}
+%  \end{linenomath*}
+
+
+
